@@ -1,0 +1,14 @@
+Java_Test/.gradle
+Java_Test/.idea
+Java_Test/build/
+Java_Test/gradle/
+Java_Test/build.gradle
+Java_Test/gradlew
+Java_Test/gradlew.bat
+Java_Test/HELP.md
+Java_Test/settings.gradle
+Java_Test/src/main/resources
+Java_Test/src/test/resources
+
+
+
