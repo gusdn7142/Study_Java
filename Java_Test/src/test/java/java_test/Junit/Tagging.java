@@ -1,16 +1,18 @@
-package java_test;
+package java_test.Junit;
 
 
+import java_test.Study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.*;
 
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CustomTagTest {
+class Tagging {
 
-    @FastTest
     @Test
     @DisplayName("스터디 만들기 fast")
+    @Tag("fast")
     void create_new_study(){
 
         Study actual = new Study(10);
@@ -18,11 +20,11 @@ class CustomTagTest {
         System.out.println("create_new_study");
     }
 
-    @SlowTest
     @Test
     @DisplayName("스터디 만들기 slow")
+    @Tag("slow")
     void createNew_study_again(){
-        System.out.println("createNew_study_again");
+        System.out.println("create1");
     }
 
     @BeforeAll

@@ -1,6 +1,7 @@
-package java_test;
+package java_test.Junit;
 
 
+import java_test.Study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ParameterContext;

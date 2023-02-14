@@ -1,4 +1,4 @@
-package java_test;
+package java_test.Junit;
 
 
 import org.junit.After;
