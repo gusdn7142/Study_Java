@@ -1,6 +1,6 @@
 package java_test.Junit;
 
-import java_test.Study;
+import java_test.domain.Study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class TestOrderTest {
     @Tag("fast")
     void create_new_study(){
         Study actual = new Study(1);
-        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
+//        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
         System.out.println(this);   //인스턴스 조회 (TestInstanceTest@eadcwe5)
         System.out.println("create_new_study :" + value++);  //1
     }

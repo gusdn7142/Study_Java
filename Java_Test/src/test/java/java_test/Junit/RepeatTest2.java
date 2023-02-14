@@ -1,7 +1,7 @@
 package java_test.Junit;
 
 
-import java_test.Study;
+import java_test.domain.Study;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +24,7 @@ class RepeatTest2 {
     //@NullAndEmptySource       //@NullSource + @EmptySource
     void ParameterizedTest(@ConvertWith(StudyConverter.class) Study study){      //string message
         //System.out.println(message);
-        System.out.println(study.getLimit());
+//        System.out.println(study.getLimit());
     }
 
 

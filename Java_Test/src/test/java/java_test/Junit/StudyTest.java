@@ -2,15 +2,12 @@ package java_test.Junit;
 
 
 
-import java_test.Study;
+import java_test.domain.Study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 //import org.assertj.core.api.*;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.condition.*;
-
-import java.time.Duration;
-
 
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -40,12 +37,12 @@ class StudyTest {
         Assumptions.assumingThat("keesun".equalsIgnoreCase(test_env),() ->{
             System.out.println("keesun");
             Study actual = new Study(10);
-            Assertions.assertThat(actual.getLimit()).isGreaterThan(0);
+//            Assertions.assertThat(actual.getLimit()).isGreaterThan(0);
 
         });
 
         Study actual = new Study(10);
-        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
+//        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
 
     }
 

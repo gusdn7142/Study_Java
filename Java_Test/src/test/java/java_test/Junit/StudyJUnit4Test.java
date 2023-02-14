@@ -1,7 +1,8 @@
 package java_test.Junit;
 
 
-import org.junit.After;
+import org.junit
+        .After;
 import org.junit.Before;
 import org.junit.Test;
 

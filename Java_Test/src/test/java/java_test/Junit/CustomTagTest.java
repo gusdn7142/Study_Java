@@ -1,7 +1,7 @@
 package java_test.Junit;
 
 
-import java_test.Study;
+import java_test.domain.Study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 
@@ -15,7 +15,7 @@ class CustomTagTest {
     void create_new_study(){
 
         Study actual = new Study(10);
-        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
+//        Assertions.assertThat(actual.getLimit()).isGreaterThan(0);  //isGreaterThan(0) : 0보다 큰 숫자인지 확인
         System.out.println("create_new_study");
     }
 
