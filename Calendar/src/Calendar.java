@@ -42,15 +42,27 @@ public class Calendar {
             return MAX_DAYS[month-1];
     }
 
-    public void printCalendar(int inputYear, int inputMonth){
-        System.out.printf("   <<%4d년%3d월>>\n",inputYear, inputMonth);
-        System.out.println("  일 월 화 수 목 금 토");
+    public void printCalendar(int year, int month, int weekDay){
+        System.out.printf("   <<%4d년%3d월>>\n",year, month);
+        System.out.println("  SU MO TU WE TH FR SA");
         System.out.println("  -------------------");
 
-        int maxDay = getMaxDayOfMonth(inputYear, inputMonth);
-        for(int i=1; i<=maxDay; i++){
+        for(int i=0; i<weekDay; i++){   //first Line
+            System.out.print("   ");
+        }
+
+        int maxDay = getMaxDayOfMonth(year, month);
+        int count = 7-weekDay;
+        int newLine = count < 7 ? count : 0;
+
+        for (int i=1; i<=count; i++){   //first Line
             System.out.printf("%3d", i);
-            if(i % 7==0) System.out.println();
+        }
+        System.out.println();
+
+        for(int i=count+1; i<=maxDay; i++){   //Seconde Line ~ Last Line
+            System.out.printf("%3d", i);
+            if(i % 7==newLine) System.out.println();
         }
         System.out.println();
     }

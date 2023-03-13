@@ -1,8 +1,20 @@
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 
 public class Prompt {
+
+    public int parseDay(String weekday){
+        if(weekday.equals("SU")) return 0;
+        else if (weekday.equals("MO")) return 1;
+        else if (weekday.equals("TU")) return 2;
+        else if (weekday.equals("WE")) return 3;
+        else if (weekday.equals("TH")) return 4;
+        else if (weekday.equals("FR")) return 5;
+        else if (weekday.equals("SA")) return 6;
+        else return 0;
+    }
 
     public void runPrompt() {
         /*
@@ -11,6 +23,7 @@ public class Prompt {
         Scanner scan = new Scanner(System.in);
         int inputYear = -1;
         int inputMonth = -1;
+        int weekday = 0;
         boolean checkInputYear = false;
         boolean checkInputMonth = false;
 
@@ -36,10 +49,15 @@ public class Prompt {
             }
 
             checkInputMonth = calendar.isRangeMonth(inputMonth);   //월의 범위가 1~12인지 체크
-            if(!checkInputMonth) continue;;
+            if(!checkInputMonth) continue;
 
+            System.out.println("첫번째 요일을 입력하세요. (SU, MO, WE, TH, FR, SA)");
+            System.out.print("Week Day>>");
+            String strWeekDay = scan.next();
+            weekday = parseDay(strWeekDay);
+            //System.out.println(strWeekDay + " " + weekday);
 
-            calendar.printCalendar(inputYear, inputMonth);
+            calendar.printCalendar(inputYear, inputMonth, weekday);
             checkInputYear = false;
             checkInputMonth = false;
             //System.out.printf("%d월은 %d일까지 있습니다 \n\n", inputMonth, calendar.getMaxDayOfMonth(inputMonth));
