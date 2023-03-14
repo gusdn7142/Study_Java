@@ -18,7 +18,7 @@ public class Prompt {
 
     public void runPrompt() {
         /*
-         * 1. (프로그램 종료 전까지) 반복해서 월을 숫자로 입력받아 가상의 달력 출력
+         * 1. (프로그램 종료 전까지) 반복해서 년도와 월을 숫자로 입력받아 가상의 달력 출력
          */
         Scanner scan = new Scanner(System.in);
         int inputYear = -1;
@@ -51,13 +51,7 @@ public class Prompt {
             checkInputMonth = calendar.isRangeMonth(inputMonth);   //월의 범위가 1~12인지 체크
             if(!checkInputMonth) continue;
 
-            System.out.println("첫번째 요일을 입력하세요. (SU, MO, WE, TH, FR, SA)");
-            System.out.print("Week Day>>");
-            String strWeekDay = scan.next();
-            weekday = parseDay(strWeekDay);
-            //System.out.println(strWeekDay + " " + weekday);
-
-            calendar.printCalendar(inputYear, inputMonth, weekday);
+            calendar.printCalendar(inputYear, inputMonth);
             checkInputYear = false;
             checkInputMonth = false;
             //System.out.printf("%d월은 %d일까지 있습니다 \n\n", inputMonth, calendar.getMaxDayOfMonth(inputMonth));
