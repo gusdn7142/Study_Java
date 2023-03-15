@@ -11,13 +11,13 @@ public class Calendar {
             return false;
     }
 
-    public boolean isEndProgram(int num){  //프로그램 종료 여부 확인
-        if(num == -1){
-            System.out.println("프로그램을 종료합니다.");
-            return true;
-        }
-        return false;
-    }
+//    public boolean isEndProgram(int num){  //프로그램 종료 여부 확인
+//        if(num == -1){
+//            System.out.println("프로그램을 종료합니다.");
+//            return true;
+//        }
+//        return false;
+//    }
 
     public boolean isRangeYear(int year){    //연도의 범위에 대한 유효성 검사
         if (year < 1970 || year > 2050) {
@@ -46,7 +46,7 @@ public class Calendar {
         int syear = 1970;                //기준 연도
         int smonth = 1;                  //기준 월
         //int sday = 1;
-        final int STANDARDWEEKDAY = 3;   //기준 요일,  1970/Jan/1st = Thurthday
+        final int STANDARDWEEKDAY = 4;   //기준 요일,  1970/Jan/1st = Thurthday
 
         int count = 0;   //전체 날짜 카운트
 
@@ -63,7 +63,7 @@ public class Calendar {
         }
 
         //일 추가 계산
-        count += day;
+        count += day - 1;
 
         //계산한 일에 기준 (요)일을 더한 값을 7로 나눠 요일 계산
         int weekDay = (count + STANDARDWEEKDAY) % 7;
