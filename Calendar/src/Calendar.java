@@ -1,8 +1,45 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Calendar {
 
     private static final int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final int[] LEAP_MAX_DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    private HashMap<Date, String> planMap;   //일정을 담는 Map
+
+    public Calendar(){
+        planMap = new HashMap<Date, String>();
+    }
+
+    public void registerPlan(String strDate, String plan) {   //일정 등록
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd")
+                    .parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("일정 등록 중 오류가 발생했습니다.");
+        }
+        planMap.put(date, plan);
+        //System.out.println(date);
+    }
+
+    public String searchPlan(String strDate) {   //일정 검색
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd")
+                    .parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("일정 검색 중 오류가 발생했습니다.");
+        }
+        String plan = planMap.get(date);
+        return plan;
+    }
+
 
     private boolean isLeapYear(int year){  //윤년인지 체크
         if(year % 4 ==0 && (year % 100 != 0 || year % 400 == 0))
@@ -103,6 +140,8 @@ public class Calendar {
 //        System.out.println(cal.getWeekDay(1971, 1, 1)==4);
 //        System.out.println(cal.getWeekDay(1972, 1, 1)==5);
 
+        cal.registerPlan("2017-06-23","Let's eat beaf");  //일정 등록
+        System.out.println(cal.searchPlan("2017-06-23").equals("Let's eat beaf"));  //일정 검색
 
     }
 

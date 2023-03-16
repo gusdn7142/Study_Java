@@ -1,5 +1,5 @@
 
-import java.sql.SQLOutput;
+import java.text.ParseException;
 import java.util.Scanner;
 
 
@@ -27,10 +27,31 @@ public class Prompt {
         else return 0;
     }
 
-    private void cmdRegister() {
+    private void cmdRegister(Scanner scan, Calendar calendar) {  //일정 등록
+
+        System.out.println("[새 일정 등록]");
+        System.out.println("날짜를 입력해 주세요. (yyyy-MM-dd)");
+        String strDate = scan.next();
+        scan.nextLine();                     //개행문자(엔터)를 제거하기위해 추가
+
+        //String text="";
+        System.out.println("일정을 입력해 주세요.  (문장의 끝에 ;를 입력해 주세요.");
+        //while(true){
+        //    String word = scan.next();
+        //    text += word + " ";
+        //    if(word.endsWith(";")) break;;
+        //}
+        String text = scan.nextLine();
+        calendar.registerPlan(strDate, text);
     }
 
-    private void cmdSearch() {
+    private void cmdSearch(Scanner scan, Calendar calendar) {  //일정 검색
+        System.out.println("[일정 검색]");
+        System.out.println("날짜를 입력해 주세요. (yyyy-MM-dd)");
+        String strDate = scan.next();
+
+        String plan = calendar.searchPlan(strDate);
+        System.out.println(plan);
     }
 
     private void cmdCal(Scanner scan, Calendar calendar) {
@@ -80,8 +101,8 @@ public class Prompt {
         while(true) {
             System.out.println("명령을 입력해 주세요. (예시 : 1.일정등록, 2.일정검색, 3.일정보기, h.도움말, q.종료)");
             String cmd = scan.next();
-            if(cmd.equals("1")) cmdRegister();                 //일정 등록
-            else if (cmd.equals("2")) cmdSearch();             //일정 검색
+            if(cmd.equals("1")) cmdRegister(scan, calendar);                 //일정 등록
+            else if (cmd.equals("2")) cmdSearch(scan, calendar);             //일정 검색
             else if (cmd.equals("3")) cmdCal(scan, calendar);  //일정 보기
             else if (cmd.equals("h")) printMenu();             //도움말
             else if (cmd.equals("q")) break;                   //종료
