@@ -1,5 +1,4 @@
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 
@@ -15,16 +14,25 @@ public class Prompt {
         System.out.println("+--------------------------+");
     }
 
-
     public int parseDay(String weekday){
-        if(weekday.equals("SU")) return 0;
-        else if (weekday.equals("MO")) return 1;
-        else if (weekday.equals("TU")) return 2;
-        else if (weekday.equals("WE")) return 3;
-        else if (weekday.equals("TH")) return 4;
-        else if (weekday.equals("FR")) return 5;
-        else if (weekday.equals("SA")) return 6;
-        else return 0;
+        switch (weekday){
+            case "SU":
+                return 0;
+            case "MO":
+                return 1;
+            case "TU":
+                return 2;
+            case "WE":
+                return 3;
+            case "TH":
+                return 4;
+            case "FR":
+                return 5;
+            case "SA":
+                return 6;
+            default:
+                return 0;
+        }
     }
 
     private void cmdRegister(Scanner scan, Calendar calendar) {  //일정 등록
@@ -35,7 +43,7 @@ public class Prompt {
         scan.nextLine();                     //개행문자(엔터)를 제거하기위해 추가
 
         //String text="";
-        System.out.println("일정을 입력해 주세요.  (문장의 끝에 ;를 입력해 주세요.");
+        System.out.println("일정을 입력해 주세요. ");
         //while(true){
         //    String word = scan.next();
         //    text += word + " ";
@@ -50,8 +58,12 @@ public class Prompt {
         System.out.println("날짜를 입력해 주세요. (yyyy-MM-dd)");
         String strDate = scan.next();
 
-        String plan = calendar.searchPlan(strDate);
-        System.out.println(plan);
+        PlanItem planItem = calendar.searchPlan(strDate);
+        if(planItem != null){
+            System.out.println(planItem.planContent);
+        } else {
+            System.out.println("일정이 없습니다.");
+        }
     }
 
     private void cmdCal(Scanner scan, Calendar calendar) {
@@ -98,14 +110,27 @@ public class Prompt {
         Scanner scan = new Scanner(System.in);
         Calendar calendar = new Calendar();
 
-        while(true) {
+        boolean isLoop = true;
+        while(isLoop) {
             System.out.println("명령을 입력해 주세요. (예시 : 1.일정등록, 2.일정검색, 3.일정보기, h.도움말, q.종료)");
             String cmd = scan.next();
-            if(cmd.equals("1")) cmdRegister(scan, calendar);                 //일정 등록
-            else if (cmd.equals("2")) cmdSearch(scan, calendar);             //일정 검색
-            else if (cmd.equals("3")) cmdCal(scan, calendar);  //일정 보기
-            else if (cmd.equals("h")) printMenu();             //도움말
-            else if (cmd.equals("q")) break;                   //종료
+            switch (cmd){
+                case "1":
+                    cmdRegister(scan, calendar);  //일정 등록
+                    break;
+                case "2":
+                    cmdSearch(scan, calendar);    //일정 검색
+                    break;
+                case "3":
+                    cmdCal(scan, calendar);       //일정 보기
+                    break;
+                case "h":
+                    printMenu();                  //도움말
+                    break;
+                case "q":
+                    isLoop = false;               //종료
+                    break;
+            }
         }
         System.out.println("Thank you. Bye~");
         scan.close();

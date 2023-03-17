@@ -8,36 +8,20 @@ public class Calendar {
     private static final int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final int[] LEAP_MAX_DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    private HashMap<Date, String> planMap;   //일정을 담는 Map
+    private HashMap<Date, PlanItem> planMap;   //일정을 담는 Map
 
     public Calendar(){
-        planMap = new HashMap<Date, String>();
+        planMap = new HashMap<Date, PlanItem>();
     }
 
-    public void registerPlan(String strDate, String plan) {   //일정 등록
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd")
-                    .parse(strDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("일정 등록 중 오류가 발생했습니다.");
-        }
-        planMap.put(date, plan);
-        //System.out.println(date);
+    public void registerPlan(String strDate, String planContent) {   //일정 등록
+        PlanItem planItem = new PlanItem(strDate, planContent);
+        planMap.put(planItem.getDate(), planItem);
     }
 
-    public String searchPlan(String strDate) {   //일정 검색
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("yyyy-MM-dd")
-                    .parse(strDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("일정 검색 중 오류가 발생했습니다.");
-        }
-        String plan = planMap.get(date);
-        return plan;
+    public PlanItem searchPlan(String strDate) {   //일정 검색
+        Date date = PlanItem.getDateFromString(strDate);
+        return planMap.get(date);
     }
 
 
