@@ -1,22 +1,52 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Calendar {
 
     private static final int[] MAX_DAYS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final int[] LEAP_MAX_DAYS = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
+    private static final String SAVE_FILE = "calendar.dat";    //파일 명
     private HashMap<Date, PlanItem> planMap;   //일정을 담는 Map
 
     public Calendar(){
         planMap = new HashMap<Date, PlanItem>();
+
+        File file = new File(SAVE_FILE);
+        if(!file.exists()) {
+            System.out.println("No Save File");
+            return;  //파일이 없다면 아래는 수행하지 않음.
+        }
+        try {
+            Scanner scan = new Scanner(file);   //파일 읽기
+            while(scan.hasNext()){
+                String line = scan.nextLine();
+                String[] strWords = line.split(",");
+                String strPlanDate = strWords[0];
+                String strPlanContent = strWords[1].replaceAll("\"","");
+                PlanItem planItem = new PlanItem(strPlanDate, strPlanContent);
+                planMap.put(planItem.getDate(), planItem);   //읽어온 일정 정보를 planItem에 입력
+            }
+            scan.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void registerPlan(String strDate, String planContent) {   //일정 등록
         PlanItem planItem = new PlanItem(strDate, planContent);
         planMap.put(planItem.getDate(), planItem);
+
+        File file = new File(SAVE_FILE);
+        String strPlanItem = planItem.getStrPlanItem();   //계획일+계획내용을 반환
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            fw.write(strPlanItem);   //파일에 계획일+계획내용 저장
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public PlanItem searchPlan(String strDate) {   //일정 검색

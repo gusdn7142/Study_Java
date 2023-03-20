@@ -108,7 +108,7 @@ public class Prompt {
          */
         printMenu();
         Scanner scan = new Scanner(System.in);
-        Calendar calendar = new Calendar();
+        Calendar calendar = new Calendar();   //일정 파일이 있는지 확인 후 불러와 Map에 저장
 
         boolean isLoop = true;
         while(isLoop) {
