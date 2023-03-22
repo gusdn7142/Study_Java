@@ -10,4 +10,8 @@ public class VendingMachine {
         return "Cola";
     }
 
+    public static void printVersion(){
+        System.out.println("v1.0");
+    }
+
 }
