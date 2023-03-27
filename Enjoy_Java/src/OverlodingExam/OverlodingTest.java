@@ -1,6 +1,6 @@
-package OverrodingExam;
+package OverlodingExam;
 
-public class OverrodingTest {
+public class OverlodingTest {
 
     public void println(boolean b){
         System.out.println(b);
@@ -19,11 +19,11 @@ public class OverrodingTest {
     }
 
     public static void main(String[] args) {
-        OverrodingTest overrodingTest = new OverrodingTest();
-        overrodingTest.println(100);
-        overrodingTest.println("hello");
-        overrodingTest.println(10.5);
-        overrodingTest.println(false);
+        OverlodingTest overlodingTest = new OverlodingTest();
+        overlodingTest.println(100);
+        overlodingTest.println("hello");
+        overlodingTest.println(10.5);
+        overlodingTest.println(false);
     }
 
 }
